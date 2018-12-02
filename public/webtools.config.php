@@ -61,4 +61,4 @@ defined('APPLICATION_ENV') || define('APPLICATION_ENV', getenv('APPLICATION_ENV'
 /**
  * @const PTOOLSPATH The path to the Phalcon Developers Tools.
  */
-defined('PTOOLSPATH') || define('PTOOLSPATH', 'C:\xampp\phalcondevtools');
+defined('PTOOLSPATH') || define('PTOOLSPATH', 'C:\xampp\phalcon-devtools');
