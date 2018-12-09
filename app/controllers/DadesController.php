@@ -3,9 +3,10 @@
 class DadesController extends ControllerBase
 {
 
-    public function initialize()
+    public function initialize(String $coordinator='administrador')
     {
-        $this->view->setTemplateAfter('usuari');
+            $this->view->setTemplateAfter($coordinator);
+
     }
 
     public function indexAction()

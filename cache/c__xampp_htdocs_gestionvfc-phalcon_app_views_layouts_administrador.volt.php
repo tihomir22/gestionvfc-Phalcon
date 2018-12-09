@@ -218,7 +218,7 @@ desired effect
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
-        {{ content() }}
+        <?= $this->getContent() ?>
 
 
 

@@ -18,7 +18,7 @@
         </div>
     </header>
     <body>
-        <div class="container">
+        <div class="container-fluid">
            {{ content() }}
         </div>
         <!-- jQuery first, then Popper.js, and then Bootstrap's JavaScript -->
