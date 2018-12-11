@@ -71,7 +71,7 @@ class Usuaris extends \Phalcon\Mvc\Model
      *
      * @var string
      */
-    protected $adreça;
+    protected $adreca;
 
     /**
      *
@@ -281,9 +281,9 @@ class Usuaris extends \Phalcon\Mvc\Model
      * @param string $adreça
      * @return $this
      */
-    public function setAdreça($adreça)
+    public function setAdreca($adreca)
     {
-        $this->adreça = $adreça;
+        $this->adreca = $adreca;
 
         return $this;
     }
@@ -549,9 +549,9 @@ class Usuaris extends \Phalcon\Mvc\Model
      *
      * @return string
      */
-    public function getAdreça()
+    public function getAdreca()
     {
-        return $this->adreça;
+        return $this->adreca;
     }
 
     /**
