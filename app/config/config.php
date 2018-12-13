@@ -26,9 +26,9 @@ return new \Phalcon\Config([
         'cacheDir'       => BASE_PATH . '/cache/',
 
         // This allows the baseUri to be understand project paths that are not in the root directory
-        // of the webpspace.  This will break if the public/index.php entry point is moved or
+        // of the webpspace.  This will break if the public/index.volt entry point is moved or
         // possibly if the web server rewrite rules are changed. This can also be set to a static path.
-        'baseUri'=>'/gestiovfc/',
-        'staticUri' => '/gestiovfc/',
+        'baseUri'=>'/gestionvfc-Phalcon/',
+        'staticUri' => '/gestionvfc-Phalcon/',
     ]
 ]);

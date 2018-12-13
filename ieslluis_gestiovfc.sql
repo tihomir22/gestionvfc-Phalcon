@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 23-11-2018 a las 00:37:31
--- Versión del servidor: 5.6.41
--- Versión de PHP: 7.2.7
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 13-12-2018 a las 21:17:59
+-- Versión del servidor: 10.1.29-MariaDB
+-- Versión de PHP: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -100,6 +100,28 @@ CREATE TABLE `linees_vendes` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pagaments`
+--
+
+CREATE TABLE `pagaments` (
+  `numero` int(11) NOT NULL,
+  `data` date DEFAULT NULL,
+  `usuari` int(11) DEFAULT NULL,
+  `import` float NOT NULL DEFAULT '0',
+  `observacions` text COLLATE utf8_spanish_ci,
+  `tipus` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `pagaments`
+--
+
+INSERT INTO `pagaments` (`numero`, `data`, `usuari`, `import`, `observacions`, `tipus`) VALUES
+(1, '2018-12-14', 1, 1000, 'El mundo se consume en dinero pow pow.', 'Cobro del Dembow');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `productes`
 --
 
@@ -166,7 +188,7 @@ CREATE TABLE `usuaris` (
   `cicle` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
   `datacaducitat` date DEFAULT NULL,
   `nacionalitat` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `adreça` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `adreca` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `cp` varchar(6) COLLATE utf8_spanish_ci DEFAULT NULL,
   `poblacio` varchar(35) COLLATE utf8_spanish_ci DEFAULT NULL,
   `provincia` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -180,6 +202,13 @@ CREATE TABLE `usuaris` (
   `autoritzacio` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'fitxer autorització si menor',
   `observacions` text COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuaris`
+--
+
+INSERT INTO `usuaris` (`id`, `dni`, `nom`, `cognoms`, `email`, `contra`, `datanaixement`, `cicle`, `datacaducitat`, `nacionalitat`, `adreca`, `cp`, `poblacio`, `provincia`, `telefon1`, `telefon2`, `telefon3`, `sexe`, `tipus`, `foto`, `fotodni`, `autoritzacio`, `observacions`) VALUES
+(1, 'X5514136Rrr', 'TIHOMIR', 'STOYCHEV', 'TIHOMIR_ALCUDIA3@HOTMAIL.COM', '219961', '0000-00-00', NULL, '2020-01-01', 'BULGARA', 'DEMBOW STREET', '46650', 'CANALS', 'VALENCIA', '603680594', '', '', 'on', 'DEMBOW', NULL, NULL, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -234,6 +263,13 @@ ALTER TABLE `linees_vendes`
   ADD PRIMARY KEY (`linea`),
   ADD KEY `fk_lineavenda_venda` (`nvenda`),
   ADD KEY `fk_lineavenda_producte` (`producte`);
+
+--
+-- Indices de la tabla `pagaments`
+--
+ALTER TABLE `pagaments`
+  ADD PRIMARY KEY (`numero`),
+  ADD KEY `fk_pago_usuari` (`usuari`);
 
 --
 -- Indices de la tabla `productes`
@@ -300,6 +336,12 @@ ALTER TABLE `linees_vendes`
   MODIFY `linea` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `pagaments`
+--
+ALTER TABLE `pagaments`
+  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `proveidors`
 --
 ALTER TABLE `proveidors`
@@ -309,7 +351,7 @@ ALTER TABLE `proveidors`
 -- AUTO_INCREMENT de la tabla `usuaris`
 --
 ALTER TABLE `usuaris`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `vendes`
@@ -340,6 +382,12 @@ ALTER TABLE `linees_compres`
 ALTER TABLE `linees_vendes`
   ADD CONSTRAINT `fk_lineavenda_producte` FOREIGN KEY (`producte`) REFERENCES `productes` (`codi`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_lineavenda_venda` FOREIGN KEY (`nvenda`) REFERENCES `vendes` (`numero`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pagaments`
+--
+ALTER TABLE `pagaments`
+  ADD CONSTRAINT `fk_pago_usuari` FOREIGN KEY (`usuari`) REFERENCES `usuaris` (`id`);
 
 --
 -- Filtros para la tabla `productes`
