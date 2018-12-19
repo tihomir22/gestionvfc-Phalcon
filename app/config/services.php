@@ -105,7 +105,7 @@ $di->set('flash', function () {
  * Start the session the first time some component request the session service
  */
 $di->setShared('session', function () {
-    $session = new SessionAdapter();
+    $session = new SessionAdapter(['uniqueid'=>'mi-dembow-loco']);
     $session->start();
 
     return $session;

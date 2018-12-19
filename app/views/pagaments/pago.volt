@@ -206,61 +206,73 @@ desired effect
         </section>
 
         <!-- Main content -->
-        <section class="content container-fluid">
+        <section class="content container">
+        <div class="row">
 
-
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Tabla de pagaments</h3>
-
-                            <div class="box-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body table-responsive no-padding">
-                            <table class="table table-hover">
-                                <tbody><tr>
-                                    <th>Num.</th>
-                                    <th>Data</th>
-                                    <th>Import</th>
-                                    <th>Tipus</th>
-                                    <th>Observacions</th>
-                                </tr>
-                                {% set total=0 %}
-                                {% for pago in arrayPagaments %}
-
-                                    <tr>
-                                        <td>{{ pago.numero }}</td>
-                                        <td>{{ pago.data }}</td>
-                                        <td>{{ pago.import }}</td>
-                                        <td class="badge bg-green"  >{{ pago.Tipus }}</td>
-                                        <td>{{ pago.observacions }}</td>
-                                        <td style="margin: 0px;padding: 2px;">
-                                            <a href="{{ url('pagaments/pago/'~pago.numero) }}" type="button" class="btn btn-info" ><i class="fa fa-edit"></i></a>
-                                        </td>
-                                    </tr>
-                                    {% set total = total + pago.import %}
-                                    {% endfor %}
-
-                                </tbody></table>
-                            <div style="margin: 10px;">
-                                <hr>
-                                <p>Num. pagaments: <label class="badge bg-green"> {{ pago.count() }} </label><hr> Total : <label class="badge bg-aqua-active color-palette"> {{ total }} € </label></p>
-                            </div>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
+            <div class="box box-danger" style="padding: 20px;">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Input Addon</h3>
                 </div>
+                <div class="box-body">
+                    <div class="row">
+                    <div class="col-md-4">
+                        <label for="numero">Numero</label>
+                        <div class="input-group" style="width: 100%;">
+                        <input type="text" name="numero" class="form-control" placeholder="Numero de id" value="{{ pago.numero }}" disabled>
+                        </div>
+                    </div>
+                        <div class="col-md-4">
+                            <label for="data">Data</label>
+                            <div class="input-group" style="width: 100%;">
+                            <input type="date" class="form-control" name="data" style="text-align: center;" value="{{ pago.data }}" disabled>
+                            </div>
+                            </div>
+                        <div class="col-md-4">
+                            <label for="import">Import</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="import" value="{{ pago.import }}" disabled>
+                                <span class="input-group-addon bg-aqua">€</span>
+                            </div>
+                        </div>
 
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label for="numero">Tipus</label>
+                            <div class="input-group" style="width: 100%;">
+                                <input type="text" class="form-control" value="{{ pago.tipus }}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-xs-8">
+                            <label for="numero">Observacions</label>
+                            <div class="input-group" style="width: 100%;">
+                                <input type="text" class="form-control" value="{{ pago.observacions }}" disabled>
+                                 </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+                        <a class="btn btn-app bg-blue">
+                            <i class="fa fa-save "></i> Guardar
+                        </a>
+                        <a class="btn btn-app bg-blue">
+                            <i class="fa fa-repeat"></i> Cancelar
+                        </a>
+                        <a class="btn btn-app bg-blue">
+                            <i class="fa fa-arrow-left"></i> Tornar
+                        </a>
+                        <a class="btn btn-app bg-red">
+                            <i class="fa fa-home"></i> Inici
+                        </a>
+                    </div>
+
+
+
+
+            </div>
+            </div>
 
 
         </section>

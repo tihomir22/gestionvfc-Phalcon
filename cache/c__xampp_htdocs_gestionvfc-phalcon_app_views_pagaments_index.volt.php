@@ -212,7 +212,7 @@ desired effect
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Responsive Hover Table</h3>
+                            <h3 class="box-title">Tabla de pagaments</h3>
 
                             <div class="box-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -234,15 +234,18 @@ desired effect
                                     <th>Tipus</th>
                                     <th>Observacions</th>
                                 </tr>
+                                <?php $total = 0; ?>
                                 <?php foreach ($arrayPagaments as $pago) { ?>
-                                    <?php $total = 0; ?>
+
                                     <tr>
                                         <td><?= $pago->numero ?></td>
                                         <td><?= $pago->data ?></td>
                                         <td><?= $pago->import ?></td>
                                         <td class="badge bg-green"  ><?= $pago->Tipus ?></td>
                                         <td><?= $pago->observacions ?></td>
-                                        <td style="margin: 0px;padding: 2px;"><button type="button" class="btn btn-info" ><i class="fa fa-edit"></i></button></td>
+                                        <td style="margin: 0px;padding: 2px;">
+                                            <a href="<?= $this->url->get('pagaments/pago/' . $pago->numero) ?>" type="button" class="btn btn-info" ><i class="fa fa-edit"></i></a>
+                                        </td>
                                     </tr>
                                     <?php $total = $total + $pago->import; ?>
                                     <?php } ?>
