@@ -3,6 +3,8 @@
 class PagamentsController extends ControllerBase
 {
 
+
+
     public function indexAction()
     {
         $pagaments=Pagaments::find('usuari' === $this->session->get('clau'));

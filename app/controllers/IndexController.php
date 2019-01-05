@@ -3,6 +3,8 @@
 class IndexController extends ControllerBase
 {
 
+
+
     public function indexAction()
     {
         //$this->view->disable(); /*deshabilita les vistes, funciona com php normal */
