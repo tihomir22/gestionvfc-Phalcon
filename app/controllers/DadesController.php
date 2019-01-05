@@ -3,11 +3,17 @@
 class DadesController extends ControllerBase
 {
 
-    public function initialize(String $coordinator='usuari')
+    public function initialize(String $coordinator='administrador')
     {
             $this->view->setTemplateAfter($coordinator);
-
+        $this->view->setMainView($coordinator);
+            if($coordinator==='usuari'){
+                $this->session->tipus="U";
+            }else{
+                $this->session->tipus="A";
+            }
     }
+
 
     public function indexAction()
     {

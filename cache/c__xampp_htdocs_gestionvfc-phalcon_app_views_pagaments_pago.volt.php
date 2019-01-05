@@ -209,6 +209,7 @@ desired effect
         <section class="content container">
         <div class="row">
 
+
             <div class="box box-danger" style="padding: 20px;">
                 <div class="box-header with-border">
                     <h3 class="box-title">Input Addon</h3>
@@ -218,19 +219,22 @@ desired effect
                     <div class="col-md-4">
                         <label for="numero">Numero</label>
                         <div class="input-group" style="width: 100%;">
-                        <input type="text" name="numero" class="form-control" placeholder="Numero de id" value="<?= $pago->numero ?>" disabled>
+                        <input type="text" name="numero" class="form-control" placeholder="Numero de id" value="<?= $pago->numero ?>" <?php if ($this->session->get('tipus') == 'U') { ?>
+                        disabled <?php } ?>>
                         </div>
                     </div>
                         <div class="col-md-4">
                             <label for="data">Data</label>
                             <div class="input-group" style="width: 100%;">
-                            <input type="date" class="form-control" name="data" style="text-align: center;" value="<?= $pago->data ?>" disabled>
+                            <input type="date" class="form-control" name="data" style="text-align: center;" value="<?= $pago->data ?>" <?php if ($this->session->get('tipus') == 'U') { ?>
+                            disabled <?php } ?>>
                             </div>
                             </div>
                         <div class="col-md-4">
                             <label for="import">Import</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="import" value="<?= $pago->import ?>" disabled>
+                                <input type="text" class="form-control" name="import" value="<?= $pago->import ?>" <?php if ($this->session->get('tipus') == 'U') { ?>
+                                disabled <?php } ?>>
                                 <span class="input-group-addon bg-aqua">€</span>
                             </div>
                         </div>
@@ -241,23 +245,30 @@ desired effect
                         <div class="col-xs-4">
                             <label for="numero">Tipus</label>
                             <div class="input-group" style="width: 100%;">
-                                <input type="text" class="form-control" value="<?= $pago->tipus ?>" disabled>
+                                <input type="text" class="form-control" value="<?= $pago->tipus ?>" <?php if ($this->session->get('tipus') == 'U') { ?>
+                                disabled <?php } ?>>
                             </div>
                         </div>
                         <div class="col-xs-8">
                             <label for="numero">Observacions</label>
                             <div class="input-group" style="width: 100%;">
-                                <input type="text" class="form-control" value="<?= $pago->observacions ?>" disabled>
+                                <input type="text" class="form-control" value="<?= $pago->observacions ?>" <?php if ($this->session->get('tipus') == 'U') { ?>
+                                disabled <?php } ?>>
                                  </div>
                         </div>
-
                     </div>
+
+
+
                     <br>
+
                     <div class="row">
-                        <a class="btn btn-app bg-blue">
+                        <a class="btn btn-app bg-blue" <?php if ($this->session->get('tipus') == 'U') { ?>
+                        disabled <?php } ?>>
                             <i class="fa fa-save "></i> Guardar
                         </a>
-                        <a class="btn btn-app bg-blue">
+                        <a class="btn btn-app bg-blue" <?php if ($this->session->get('tipus') == 'U') { ?>
+                        disabled <?php } ?>>
                             <i class="fa fa-repeat"></i> Cancelar
                         </a>
                         <a class="btn btn-app bg-blue">
@@ -270,9 +281,10 @@ desired effect
 
 
 
+                 </div>
 
             </div>
-            </div>
+        </div>
 
 
         </section>
