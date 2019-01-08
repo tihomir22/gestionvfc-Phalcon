@@ -6,11 +6,15 @@ class ControllerBase extends Controller
 {
     public function initialize()
     {
-        $this->session->tipus="U";
-        if( $this->session->tipus==="U"){
-            $this->view->setTemplateBefore("usuari");
-        }else{
-            $this->view->setTemplateBefore("administrador");
-        }
+
+            if( $this->session->tipus==="U"){
+                $this->view->setTemplateBefore("usuari");
+            }else if($this->session->tipus==="A"){
+                $this->view->setTemplateBefore("administrador");
+            }
+
+
+
+
     }
 }
