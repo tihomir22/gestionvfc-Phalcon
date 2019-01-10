@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-12-2018 a las 21:17:59
--- Versión del servidor: 10.1.29-MariaDB
--- Versión de PHP: 7.2.0
+-- Tiempo de generación: 10-01-2019 a las 12:56:37
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -50,6 +50,21 @@ CREATE TABLE `cicles` (
   `grau` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
   `familia` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `tutor` int(11) DEFAULT NULL COMMENT 'tutor del cicle en aquest curs'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comandes`
+--
+
+CREATE TABLE `comandes` (
+  `numero` int(11) NOT NULL,
+  `data` date DEFAULT NULL,
+  `usuari` int(11) DEFAULT NULL,
+  `total` float NOT NULL,
+  `servida` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `observaciones` text COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -100,6 +115,22 @@ CREATE TABLE `linees_vendes` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `lines_comandes`
+--
+
+CREATE TABLE `lines_comandes` (
+  `linea` int(11) NOT NULL,
+  `ncomanda` int(11) DEFAULT NULL,
+  `producte` varchar(50) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `unitats` int(11) DEFAULT NULL,
+  `pventa` int(11) DEFAULT NULL,
+  `servit` tinyint(1) DEFAULT NULL,
+  `observacions` varchar(250) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pagaments`
 --
 
@@ -117,7 +148,8 @@ CREATE TABLE `pagaments` (
 --
 
 INSERT INTO `pagaments` (`numero`, `data`, `usuari`, `import`, `observacions`, `tipus`) VALUES
-(1, '2018-12-14', 1, 1000, 'El mundo se consume en dinero pow pow.', 'Cobro del Dembow');
+(1, '2018-12-14', 1, 1000, 'Who the fk are you n1gger', 'Cobro del Dembow'),
+(2, '2018-12-11', 1, 2023, 'What the fuck is this', 'Pago Final');
 
 -- --------------------------------------------------------
 
@@ -208,7 +240,8 @@ CREATE TABLE `usuaris` (
 --
 
 INSERT INTO `usuaris` (`id`, `dni`, `nom`, `cognoms`, `email`, `contra`, `datanaixement`, `cicle`, `datacaducitat`, `nacionalitat`, `adreca`, `cp`, `poblacio`, `provincia`, `telefon1`, `telefon2`, `telefon3`, `sexe`, `tipus`, `foto`, `fotodni`, `autoritzacio`, `observacions`) VALUES
-(1, 'X5514136Rrr', 'TIHOMIR', 'STOYCHEV', 'TIHOMIR_ALCUDIA3@HOTMAIL.COM', '219961', '0000-00-00', NULL, '2020-01-01', 'BULGARA', 'DEMBOW STREET', '46650', 'CANALS', 'VALENCIA', '603680594', '', '', 'on', 'DEMBOW', NULL, NULL, NULL, '');
+(1, 'x5514136R', 'Tihomir', 'Stoychev', 'tihomir_alcudia3@hotmail.com', '$2y$08$bXZ0UTdDTHZNNkNNWTkyQOtZQWY23l97jWI9pd7SG5wAgXg5HR6v6', '0000-00-00', NULL, '2018-12-05', 'Bulgaria', 'C mestre serrano', '46650', 'Canals', 'Valencia', '603680695', '', '', 'on', 'A', NULL, NULL, 'Total', ''),
+(2, 'X12345678P', 'Joshue', 'Blastoken 1/17/2', 'blastoken@gmail.com', '$2y$08$MHhaUWtkcjVTTHpueGdRa.a2CtnnaBHQi1zKQ/QEfGf34RITUwnPq', '2019-01-10', NULL, '2019-01-10', 'Wakandiense', 'Black Lives Matter Street 1488', '1488', 'ElDiaQuenosDescubrieron', 'AfricaProfunda', '666999666', NULL, NULL, 'Otros', 'U', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -242,6 +275,13 @@ ALTER TABLE `cicles`
   ADD UNIQUE KEY `titol` (`titol`);
 
 --
+-- Indices de la tabla `comandes`
+--
+ALTER TABLE `comandes`
+  ADD PRIMARY KEY (`numero`),
+  ADD KEY `usuari_id` (`usuari`) USING BTREE;
+
+--
 -- Indices de la tabla `compres`
 --
 ALTER TABLE `compres`
@@ -263,6 +303,14 @@ ALTER TABLE `linees_vendes`
   ADD PRIMARY KEY (`linea`),
   ADD KEY `fk_lineavenda_venda` (`nvenda`),
   ADD KEY `fk_lineavenda_producte` (`producte`);
+
+--
+-- Indices de la tabla `lines_comandes`
+--
+ALTER TABLE `lines_comandes`
+  ADD PRIMARY KEY (`linea`),
+  ADD KEY `fk_lineacomanda_comanda` (`ncomanda`),
+  ADD KEY `fk_lineacomanda_producte` (`producte`);
 
 --
 -- Indices de la tabla `pagaments`
@@ -318,6 +366,12 @@ ALTER TABLE `accessos`
   MODIFY `numero` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `comandes`
+--
+ALTER TABLE `comandes`
+  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `compres`
 --
 ALTER TABLE `compres`
@@ -336,10 +390,16 @@ ALTER TABLE `linees_vendes`
   MODIFY `linea` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `lines_comandes`
+--
+ALTER TABLE `lines_comandes`
+  MODIFY `linea` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `pagaments`
 --
 ALTER TABLE `pagaments`
-  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `proveidors`
@@ -351,7 +411,7 @@ ALTER TABLE `proveidors`
 -- AUTO_INCREMENT de la tabla `usuaris`
 --
 ALTER TABLE `usuaris`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `vendes`
@@ -362,6 +422,13 @@ ALTER TABLE `vendes`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comandes`
+--
+ALTER TABLE `comandes`
+  ADD CONSTRAINT `comandes_ibfk_1` FOREIGN KEY (`usuari`) REFERENCES `usuaris` (`id`),
+  ADD CONSTRAINT `comandes_ibfk_2` FOREIGN KEY (`numero`) REFERENCES `lines_comandes` (`ncomanda`);
 
 --
 -- Filtros para la tabla `compres`
@@ -393,7 +460,8 @@ ALTER TABLE `pagaments`
 -- Filtros para la tabla `productes`
 --
 ALTER TABLE `productes`
-  ADD CONSTRAINT `fk_producte_proveidor` FOREIGN KEY (`proveidor`) REFERENCES `proveidors` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_producte_proveidor` FOREIGN KEY (`proveidor`) REFERENCES `proveidors` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `productes_ibfk_1` FOREIGN KEY (`codi`) REFERENCES `lines_comandes` (`producte`);
 
 --
 -- Filtros para la tabla `usuaris`

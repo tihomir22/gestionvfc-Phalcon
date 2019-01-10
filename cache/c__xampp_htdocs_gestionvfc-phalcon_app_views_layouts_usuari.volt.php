@@ -123,14 +123,14 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="dist/img/pipo190x143.jpg" class="user-image" alt="Pipo">
+              <img src="https://i.ytimg.com/vi/cLJaSS_aS0E/hqdefault.jpg" class="user-image" alt="Pipo">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">José Luis Aznar</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="dist/img/pipo190x143.jpg" class="img-circle" alt="User Image">
+                <img src="https://i.ytimg.com/vi/cLJaSS_aS0E/hqdefault.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   José Luis Aznar - Prof. Informàtica
@@ -145,7 +145,7 @@ desired effect
                   <a href="#" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Desconnectar</a>
+                  <a href="<?= $this->url->get('index/logout') ?>" class="btn btn-default btn-flat">Desconnectar</a>
                 </div>
               </li>
             </ul>
@@ -172,7 +172,7 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENÚ</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Inici</span></a></li>
+        <li class="active"><a href="<?= $this->url->get('') ?>"><i class="fa fa-dashboard"></i> <span>Inici</span></a></li>
         <li><a href="#"><i class="fa fa-pencil-square-o"></i> <span>Dades</span></a></li>
         <li class="header">VENDES PRODCUTES</li>
 

@@ -18,10 +18,10 @@ class IndexController extends ControllerBase
         }else{
 
             if($this->session->tipus==="U"){
-              $this->dispatcher->forward(array('controller'=>'dades'));
+              $this->dispatcher->forward(array('controller'=>'usuari'));
             }elseif ($this->session->tipus==="A"){
                 $this -> session->tipus="A";
-                $this->dispatcher->forward(array('controller'=>'dades'));
+                $this->dispatcher->forward(array('controller'=>'administrador'));
             }else{
                 $this->session->destroy();
                 $this->dispatcher->forward(array(

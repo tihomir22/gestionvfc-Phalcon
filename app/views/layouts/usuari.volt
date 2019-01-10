@@ -172,7 +172,7 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENÚ</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Inici</span></a></li>
+        <li class="active"><a href="{{ url('') }}"><i class="fa fa-dashboard"></i> <span>Inici</span></a></li>
         <li><a href="#"><i class="fa fa-pencil-square-o"></i> <span>Dades</span></a></li>
         <li class="header">VENDES PRODCUTES</li>
 
