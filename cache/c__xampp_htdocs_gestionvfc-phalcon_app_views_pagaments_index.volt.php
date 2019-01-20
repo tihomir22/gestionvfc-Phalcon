@@ -30,6 +30,7 @@
                                     <th>Tipus</th>
                                     <th>Observacions</th>
                                 </tr>
+
                                 <?php $total = 0; ?>
                                 <?php foreach ($arrayPagaments as $pago) { ?>
 
@@ -45,6 +46,7 @@
                                     </tr>
                                     <?php $total = $total + $pago->import; ?>
                                     <?php } ?>
+
 
                                 </tbody></table>
                             <div style="margin: 10px;">

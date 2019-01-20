@@ -17,8 +17,11 @@ class PagamentsController extends ControllerBase
 
     public function indexAction()
     {
-        $pagaments=Pagaments::find('usuari' === $this->session->get('clau'));
-        $this->view->setVar("arrayPagaments",$pagaments);
+        $pagaments=[];
+        $idUsuario=$this->session->get('clau');
+        $pagaments=Pagaments::find("usuari = ".$idUsuario."");
+        $this->view->setVar("arrayPagaments", $pagaments);
+
     }
 
     public function pagoAction($numpago){

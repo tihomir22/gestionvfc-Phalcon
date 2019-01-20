@@ -30,6 +30,7 @@
                                     <th>Tipus</th>
                                     <th>Observacions</th>
                                 </tr>
+
                                 {% set total=0 %}
                                 {% for pago in arrayPagaments %}
 
@@ -45,6 +46,7 @@
                                     </tr>
                                     {% set total = total + pago.import %}
                                     {% endfor %}
+
 
                                 </tbody></table>
                             <div style="margin: 10px;">
