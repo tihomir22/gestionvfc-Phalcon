@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-01-2019 a las 12:56:37
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.2.12
+-- Tiempo de generación: 24-01-2019 a las 21:56:32
+-- Versión del servidor: 10.1.29-MariaDB
+-- Versión de PHP: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -66,6 +66,14 @@ CREATE TABLE `comandes` (
   `servida` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
   `observaciones` text COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `comandes`
+--
+
+INSERT INTO `comandes` (`numero`, `data`, `usuari`, `total`, `servida`, `observaciones`) VALUES
+(1, '2019-01-24', 1, 5000, 'si', 'Esta comanda es directamente del master and comendar total shieiieiet'),
+(32, '2019-01-24', 1, 2000, 'yes', 'heheheheh happy hanukah');
 
 -- --------------------------------------------------------
 
@@ -128,6 +136,15 @@ CREATE TABLE `lines_comandes` (
   `observacions` varchar(250) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `lines_comandes`
+--
+
+INSERT INTO `lines_comandes` (`linea`, `ncomanda`, `producte`, `unitats`, `pventa`, `servit`, `observacions`) VALUES
+(1, 1, 'What im gonna do', 500, 5, 0, 'Bitconneeeeeeeeeeect'),
+(2, 32, 'Dembow', 100, 50, 1, 'Yea maaan'),
+(66, 32, 'Dembow', 100, 50, 1, 'Yea maaan');
+
 -- --------------------------------------------------------
 
 --
@@ -149,7 +166,8 @@ CREATE TABLE `pagaments` (
 
 INSERT INTO `pagaments` (`numero`, `data`, `usuari`, `import`, `observacions`, `tipus`) VALUES
 (1, '2018-12-14', 1, 1000, 'Who the fk are you n1gger', 'Cobro del Dembow'),
-(2, '2018-12-11', 1, 2023, 'What the fuck is this', 'Pago Final');
+(2, '2018-12-11', 1, 2023, 'What the fuck is this', 'Pago Final'),
+(111, '2018-12-14', 2, 11111, 'Yea boi', 'Jerk it m8');
 
 -- --------------------------------------------------------
 
@@ -240,7 +258,7 @@ CREATE TABLE `usuaris` (
 --
 
 INSERT INTO `usuaris` (`id`, `dni`, `nom`, `cognoms`, `email`, `contra`, `datanaixement`, `cicle`, `datacaducitat`, `nacionalitat`, `adreca`, `cp`, `poblacio`, `provincia`, `telefon1`, `telefon2`, `telefon3`, `sexe`, `tipus`, `foto`, `fotodni`, `autoritzacio`, `observacions`) VALUES
-(1, 'x5514136R', 'Tihomir', 'Stoychev', 'tihomir_alcudia3@hotmail.com', '$2y$08$bXZ0UTdDTHZNNkNNWTkyQOtZQWY23l97jWI9pd7SG5wAgXg5HR6v6', '0000-00-00', NULL, '2018-12-05', 'Bulgaria', 'C mestre serrano', '46650', 'Canals', 'Valencia', '603680695', '', '', 'on', 'A', NULL, NULL, 'Total', ''),
+(1, 'x5514136R', 'Tihomir', 'Stoychev', 'tihomir_alcudia3@hotmail.com', '$2y$08$cUh0VllwWVIrU3UxZk9hT.o/X5b/KFy/dlLbyu2NQ6dJP9evcJyv2', '0000-00-00', NULL, '2018-12-05', 'Bulgaria', 'C mestre serrano', '46650', 'Canals', 'Valencia', '603680695', '', '', 'on', 'A', NULL, NULL, 'Total', ''),
 (2, 'X12345678P', 'Joshue', 'Blastoken 1/17/2', 'blastoken@gmail.com', '$2y$08$MHhaUWtkcjVTTHpueGdRa.a2CtnnaBHQi1zKQ/QEfGf34RITUwnPq', '2019-01-10', NULL, '2019-01-10', 'Wakandiense', 'Black Lives Matter Street 1488', '1488', 'ElDiaQuenosDescubrieron', 'AfricaProfunda', '666999666', NULL, NULL, 'Otros', 'U', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -369,7 +387,7 @@ ALTER TABLE `accessos`
 -- AUTO_INCREMENT de la tabla `comandes`
 --
 ALTER TABLE `comandes`
-  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `compres`
@@ -393,13 +411,13 @@ ALTER TABLE `linees_vendes`
 -- AUTO_INCREMENT de la tabla `lines_comandes`
 --
 ALTER TABLE `lines_comandes`
-  MODIFY `linea` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `linea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de la tabla `pagaments`
 --
 ALTER TABLE `pagaments`
-  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT de la tabla `proveidors`
@@ -427,8 +445,7 @@ ALTER TABLE `vendes`
 -- Filtros para la tabla `comandes`
 --
 ALTER TABLE `comandes`
-  ADD CONSTRAINT `comandes_ibfk_1` FOREIGN KEY (`usuari`) REFERENCES `usuaris` (`id`),
-  ADD CONSTRAINT `comandes_ibfk_2` FOREIGN KEY (`numero`) REFERENCES `lines_comandes` (`ncomanda`);
+  ADD CONSTRAINT `comandes_ibfk_1` FOREIGN KEY (`usuari`) REFERENCES `usuaris` (`id`);
 
 --
 -- Filtros para la tabla `compres`
@@ -449,6 +466,12 @@ ALTER TABLE `linees_compres`
 ALTER TABLE `linees_vendes`
   ADD CONSTRAINT `fk_lineavenda_producte` FOREIGN KEY (`producte`) REFERENCES `productes` (`codi`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_lineavenda_venda` FOREIGN KEY (`nvenda`) REFERENCES `vendes` (`numero`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `lines_comandes`
+--
+ALTER TABLE `lines_comandes`
+  ADD CONSTRAINT `lines_comandes_ibfk_1` FOREIGN KEY (`ncomanda`) REFERENCES `comandes` (`numero`);
 
 --
 -- Filtros para la tabla `pagaments`
