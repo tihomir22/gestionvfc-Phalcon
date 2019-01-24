@@ -176,7 +176,7 @@ desired effect
         <li><a href="#"><i class="fa fa-pencil-square-o"></i> <span>Dades</span></a></li>
         <li class="header">CONTROL USUARIS</li>
         <li><a href="#"><i class="fa fa-user"></i> <span>Usuaris</span></a></li>
-        <li><a href="#"><i class="fa fa-file-text-o"></i> <span>Comandes</span></a></li>
+        <li><a href="{{ url('comandes') }}"><i class="fa fa-file-text-o"></i> <span>Comandes</span></a></li>
         <li><a href="#"><i class="fa fa-list-alt"></i> <span>Vendes</span></a></li>
         <li><a href="{{ url('pagaments') }}"><i class="fa fa-money"></i> <span>Pagaments</span></a></li>
         <li class="header">CONTROL PROVEIDORS</li>
